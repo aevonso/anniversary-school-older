@@ -13,6 +13,13 @@ function initHeader() {
         });
     });
     
+    document.querySelectorAll('a[href="pages/about-developer.html"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateToAboutDeveloper();
+        });
+    });
+    
     const logo = document.querySelector('.logo img');
     if (logo) {
         logo.addEventListener('click', function() {
@@ -36,6 +43,11 @@ function initVideoLinks() {
             showVideoPlaceholder();
         });
     });
+}
+
+function navigateToAboutDeveloper() {
+    const basePath = getBasePath();
+    window.location.href = basePath + 'pages/about-developer.html';
 }
 
 function showVideoPlaceholder() {
