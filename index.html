@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Исторический путь - Юбилей школы №4</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/style.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Вставка хедера -->
+    <div id="header-container"></div>
+    
+    <main class="content">
+        <div class="hero-section">
+            <h1>95 лет нашей школе!</h1>
+            <p class="hero-subtitle">Исторический путь сквозь века</p>
+            <div class="anniversary-badge">95</div>
+        </div>
+        
+        <div class="intro-text">
+            <p>Наша школа - часть великой истории России. Изучите ключевые исторические события, которые формировали нашу страну и школу на протяжении веков.</p>
+        </div>
+        
+        <ul class="menu-list">
+            <li onclick="navigateToHistoricalDates()">
+                <i class="fas fa-landmark"></i> Исторические даты
+            </li>
+            <li onclick="showVideoPlaceholder()">
+                <i class="fas fa-video"></i> Юбилейное видео
+            </li>
+            <li onclick="window.open('https://school-4.edusite.ru/')">
+                <i class="fas fa-school"></i> Сайт нашей школы
+            </li>
+            <li onclick="window.open('https://vk.com/prestige_4')">
+                <i class="fab fa-vk"></i> Группа VKонтакте
+            </li>
+            <li onclick="window.open('https://vk.com/asjfksu')">
+                <i class="fas fa-newspaper"></i> Пресс-центр "ГОРИЗОНТ"
+            </li>
+        </ul>
+        
+        <div class="features-section">
+            <h2>Почему важно знать историю?</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-brain"></i>
+                    <h3>Развиваем мышление</h3>
+                    <p>Изучение истории развивает критическое мышление и аналитические способности</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-roots"></i>
+                    <h3>Сохраняем традиции</h3>
+                    <p>Знание истории помогает сохранять культурное наследие и традиции</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-globe"></i>
+                    <h3>Понимаем настоящее</h3>
+                    <p>История помогает понять современные процессы и события</p>
+                </div>
+            </div>
+            <button class="action-button" onclick="navigateToHistoricalDates()">Изучить историю</button>
+        </div>
+        
+        <div class="school-timeline">
+            <h2>Наша школа в истории</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1930</div>
+                    <div class="timeline-content">
+                        <h3>Основание школы</h3>
+                        <p>Школа №4 была основана в 1930 году</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>95-летний юбилей</h3>
+                        <p>В 2025 году отмечаем 95-летие школы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Юбилей школы №4. Все права защищены.</p>
+        <p>Исторический проект к 95-летию школы</p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon" id="modal-icon"></div>
+            <h3 id="modal-title"></h3>
+            <p id="modal-message"></p>
+            <button class="action-button modal-button">Понятно</button>
+        </div>
+    </div>
+
+    <script src="js/script.js?v=1"></script>
+    <script>
+        function getBasePath() {
+            const path = window.location.pathname;
+            if (path.endsWith('index.html') || path.endsWith('/')) {
+                return '';
+            } else {
+                return '../';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const basePath = getBasePath();
+            
+            fetch(basePath + 'layout.html?v=1')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    if (typeof initHeader === 'function') {
+                        initHeader();
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки хедера:', error);
+                    document.getElementById('header-container').innerHTML = `
+                        <header class="header">
+                            <div class="logo">
+                                <img src="https://sun9-43.userapi.com/s/v1/ig1/dyVW0o8Y7P47QRi99Py6sPCZQbMtPdSLIO529QEqmD5miRbdCatBazgUuHnRb4bnnC5vnkDn.jpg?quality=96&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0" alt="Логотип школы">
+                            </div>
+                            <nav class="nav-menu">
+                                <a href="pages/historical-dates.html" class="nav-item"><i class="fas fa-landmark"></i>Исторические даты</a>
+                                <a href="#" class="nav-item video-link"><i class="fas fa-video"></i> Юбилейное видео</a>
+                                <a href="https://school-4.edusite.ru/" class="nav-item" target="_blank"><i class="fas fa-school"></i> Сайт школы</a>
+                                <a href="https://vk.com/prestige_4" class="nav-item" target="_blank"><i class="fab fa-vk"></i> VKонтакте</a>
+                                <a href="https://vk.com/asjfksu" class="nav-item" target="_blank"><i class="fas fa-newspaper"></i> ГОРИЗОНТ</a>
+                            </nav>
+                        </header>
+                        <div class="separator"></div>
+                    `;
+                    initModal();
+                    initVideoLinks();
+                });
+        });
+
+        function navigateToHistoricalDates() {
+            const basePath = getBasePath();
+            window.location.href = basePath + 'pages/historical-dates.html';
+        }
+
+        function showVideoPlaceholder() {
+            showModal('info', 'Видео в разработке', 'Юбилейное видео находится в процессе подготовки. Скоро будет доступно!');
+        }
+
+        function initModal() {
+            const modal = document.getElementById('modal');
+            const closeBtn = document.querySelector('.close-modal');
+            const modalBtn = document.querySelector('.modal-button');
+            
+            if (closeBtn) closeBtn.addEventListener('click', hideModal);
+            if (modalBtn) modalBtn.addEventListener('click', hideModal);
+            if (modal) modal.addEventListener('click', function(e) {
+                if (e.target === modal) hideModal();
+            });
+        }
+
+        function showModal(type, title, message) {
+            const modal = document.getElementById('modal');
+            const icon = document.getElementById('modal-icon');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            
+            if (!modal || !icon || !modalTitle || !modalMessage) return;
+            
+            icon.className = 'modal-icon';
+            switch(type) {
+                case 'info': icon.innerHTML = '<i class="fas fa-info-circle"></i>'; icon.classList.add('info'); break;
+                case 'success': icon.innerHTML = '<i class="fas fa-check-circle"></i>'; icon.classList.add('success'); break;
+                case 'error': icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>'; icon.classList.add('error'); break;
+            }
+            
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
+        }
+
+        function hideModal() {
+            const modal = document.getElementById('modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function initVideoLinks() {
+            document.querySelectorAll('.video-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showVideoPlaceholder();
+                });
+            });
+        }
+
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            document.body.style.opacity = '1';
+        }, 100);
+    </script>
+</body>
+</html>

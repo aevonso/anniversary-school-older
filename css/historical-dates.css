@@ -1,0 +1,94 @@
+   .historical-dates {
+            padding: 30px;
+        }
+        
+        .dates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .date-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .date-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .date-image {
+            height: 200px;
+            background: linear-gradient(135deg, #8b0000 0%, #a52a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        .date-content {
+            padding: 20px;
+        }
+        
+        .date-year {
+            font-size: 1.8em;
+            color: #8b0000;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .date-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .date-description {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .date-period {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #8b0000;
+            border: 1px solid #dee2e6;
+        }
+        
+        .back-button {
+            margin: 30px 0;
+            padding: 12px 25px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #5a6268;
+        }
+        
+        @media (max-width: 768px) {
+            .dates-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .date-image {
+                height: 150px;
+                font-size: 2.5em;
+            }
+        }
