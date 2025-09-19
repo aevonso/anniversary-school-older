@@ -31,7 +31,7 @@
         <i class="fas fa-landmark"></i> Исторические даты
     </li>
     <li onclick="showVideoPlaceholder()">
-        <i class="fas fa-video"></i> Юбилейное видео
+        <i class="fas fa-video"></i> Юбилей школы
     </li>
     <li onclick="navigateToAboutDeveloper()">
         <i class="fas fa-code"></i> О разработчике
@@ -155,7 +155,8 @@
         }
 
         function showVideoPlaceholder() {
-            showModal('info', 'Видео в разработке', 'Юбилейное видео находится в процессе подготовки. Скоро будет доступно!');
+            const basePath = getBasePath();
+            window.location.href = basePath + 'pages/anniversary.html';;
         }
 
         function initModal() {
