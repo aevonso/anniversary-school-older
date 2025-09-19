@@ -58,6 +58,26 @@
                 <div class="developer-photo">
                     <img src="../images/NichOddone.jpg" alt="Николас Грузных" class="developer-image" onerror="this.src='https://via.placeholder.com/300x300/8b0000/ffffff?text=Nicholas'">
                     <p class="photo-caption">Николас Грузных, выпускник 9 класса 2021 года</p>
+
+
+                    <div class="music-player">
+                        <div class="player-controls">
+                            <button id="playPauseBtn" class="control-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="progress-container">
+                            <input type="range" id="progressBar" class="progress-bar" value="0" max="100">
+                            <div class="time-display">
+                                <span id="currentTime">0:00</span>
+                                <span id="totalTime">0:00</span>
+                            </div>
+                        </div>
+                        <audio id="audioPlayer" preload="metadata">
+                            <source src="../music/Aaron_Hibell_-_glued_2_deep_in_time_time_x_glue_x_how_deep_is_your_love_77322264.mp3" type="audio/mpeg">
+                            Ваш браузер не поддерживает аудио элемент.
+                        </audio>
+                    </div>
                     
                     <div class="social-links">
                         <a href="https://t.me/aevonso" class="social-link" target="_blank" title="Telegram">
@@ -205,11 +225,91 @@
                 document.body.style.transition = 'opacity 0.5s ease-in';
                 document.body.style.opacity = '1';
             }, 100);
+            
+            // Инициализация музыкального плеера
+            initMusicPlayer();
         });
 
         function goBack() {
             window.history.back();
         }
+        
+       function initMusicPlayer() {
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalTimeEl = document.getElementById('totalTime');
+    const musicPlayer = document.querySelector('.music-player');
+    
+    // Создаем визуализатор
+    const visualizer = document.createElement('div');
+    visualizer.className = 'visualizer';
+    for (let i = 0; i < 7; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'visualizer-bar';
+        visualizer.appendChild(bar);
+    }
+    document.querySelector('.progress-container').after(visualizer);
+    
+    // Установка общего времени после загрузки метаданных
+    audioPlayer.addEventListener('loadedmetadata', function() {
+        const duration = audioPlayer.duration;
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration % 60);
+        totalTimeEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        progressBar.max = Math.floor(duration);
+    });
+    
+    // Обновление прогресса во время воспроизведения
+    audioPlayer.addEventListener('timeupdate', function() {
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
+        
+        // Обновление ползунка
+        progressBar.value = currentTime;
+        
+        // Обновление CSS переменной для градиента
+        const progressPercent = (currentTime / duration) * 100;
+        progressBar.style.setProperty('--progress', `${progressPercent}%`);
+        
+        // Обновление текущего времени
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = Math.floor(currentTime % 60);
+        currentTimeEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    });
+    
+    // Кнопка play/pause
+    playPauseBtn.addEventListener('click', function() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            musicPlayer.classList.add('playing');
+            document.querySelector('.visualizer').style.display = 'flex';
+        } else {
+            audioPlayer.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            musicPlayer.classList.remove('playing');
+            document.querySelector('.visualizer').style.display = 'none';
+        }
+    });
+    
+    // Перемотка при изменении позиции ползунка
+    progressBar.addEventListener('input', function() {
+        audioPlayer.currentTime = progressBar.value;
+    });
+    
+    // Сброс кнопки при окончании воспроизведения
+    audioPlayer.addEventListener('ended', function() {
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        audioPlayer.currentTime = 0;
+        musicPlayer.classList.remove('playing');
+        document.querySelector('.visualizer').style.display = 'none';
+    });
+    
+    // Скрываем визуализатор изначально
+    document.querySelector('.visualizer').style.display = 'none';
+}
     </script>
 </body>
 </html>
