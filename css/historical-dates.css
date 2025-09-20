@@ -92,3 +92,75 @@
                 font-size: 2.5em;
             }
         }
+
+
+        /* Стили для навигационных кнопок */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.back-button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    background: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+    gap: 8px;
+}
+
+.nav-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+.directors-button {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+    box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
+}
+
+.directors-button:hover {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
+}
+
+@media (max-width: 768px) {
+    .navigation-buttons {
+        flex-direction: column;
+    }
+    
+    .back-button, .nav-button {
+        justify-content: center;
+        width: 100%;
+    }
+}
