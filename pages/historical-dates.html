@@ -14,8 +14,7 @@
 </head>
 <body>
 
-      <!-- Встроенный хедер -->
-    <header class="header">
+     <header class="header">
         <div class="logo">
             <img src="https://sun9-43.userapi.com/s/v1/ig1/dyVW0o8Y7P47QRi99Py6sPCZQbMtPdSLIO529QEqmD5miRbdCatBazgUuHnRb4bnnC5vnkDn.jpg?quality=96&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0" alt="Логотип школы">
         </div>
@@ -25,11 +24,18 @@
                 <i class="fas fa-landmark"></i>
                 Исторические даты
             </a>
-            <a href="anniversary.html" class="nav-item video-link">
+            <a href="anniversary.html" class="nav-item">
                 <i class="fas fa-video"></i>
                 Юбилей школы
             </a>
-        
+            <a href="directors.html" class="nav-item">
+                <i class="fas fa-user-tie"></i>
+                Директора школы
+            </a>
+            <a href="boyarskaya.html" class="nav-item active">
+                <i class="fas fa-crown"></i>
+                А.Р. Боярская
+            </a>
             <a href="https://school-4.edusite.ru/" class="nav-item">
                 <i class="fas fa-school"></i>
                 Сайт нашей школы
@@ -55,7 +61,6 @@
             <p>Изучите ключевые события истории России, которые сформировали нашу страну</p>
             
             <div class="dates-container">
-                <!-- Дата 1 -->
                 <div class="date-card">
                     <div class="date-image">988</div>
                     <div class="date-content">
@@ -65,7 +70,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 2 -->
                 <div class="date-card">
                     <div class="date-image">1380</div>
                     <div class="date-content">
@@ -75,7 +79,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 3 -->
                 <div class="date-card">
                     <div class="date-image">1480</div>
                     <div class="date-content">
@@ -85,7 +88,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 4 -->
                 <div class="date-card">
                     <div class="date-image">1861</div>
                     <div class="date-content">
@@ -95,7 +97,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 5 -->
                 <div class="date-card">
                     <div class="date-image">1893</div>
                     <div class="date-content">
@@ -105,7 +106,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 6 -->
                 <div class="date-card">
                     <div class="date-image">
                         <span>1914</span>
@@ -120,7 +120,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 7 -->
                 <div class="date-card">
                     <div class="date-image">1917</div>
                     <div class="date-content">
@@ -130,7 +129,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 8 -->
                 <div class="date-card">
                     <div class="date-image">1930</div>
                     <div class="date-content">
@@ -140,7 +138,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 9 -->
                 <div class="date-card">
                     <div class="date-image">1937</div>
                     <div class="date-content">
@@ -150,7 +147,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 10 -->
                 <div class="date-card">
                     <div class="date-image">
                         <span>1941</span>
@@ -165,7 +161,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 11 -->
                 <div class="date-card">
                     <div class="date-image">1993</div>
                     <div class="date-content">
@@ -175,7 +170,6 @@
                     </div>
                 </div>
                 
-                <!-- Дата 12 -->
                 <div class="date-card">
                     <div class="date-image">2025</div>
                     <div class="date-content">
@@ -186,9 +180,14 @@
                 </div>
             </div>
             
-            <button class="back-button" onclick="goBack()">
-                <i class="fas fa-arrow-left"></i> Вернуться на главную
-            </button>
+            <div class="navigation-buttons">
+                <button class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Вернуться на главную
+                </button>
+                <a href="directors.html" class="nav-button directors-button">
+                    К директорам школы <i class="fas fa-user-tie"></i>
+                </a>
+            </div>
         </div>
     </main>
 
@@ -204,6 +203,16 @@
                 document.body.style.transition = 'opacity 0.5s ease-in';
                 document.body.style.opacity = '1';
             }, 100);
+            
+            const currentPage = window.location.pathname.split('/').pop();
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                const href = item.getAttribute('href');
+                if (href && href.includes(currentPage)) {
+                    item.classList.add('active');
+                }
+            });
         });
 
         function goBack() {
